@@ -1,0 +1,24 @@
+{
+  "name": "10-calendar-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.7.0",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.3.5",
+    "swagger-jsdoc": "^6.0.0-rc.5",
+    "swagger-ui-express": "^4.1.5"
+  }
+}
