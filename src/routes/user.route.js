@@ -1,6 +1,6 @@
 /*
-   Rutas de usuario / Auth
-   host + api/auth
+   Rutas de usuario / users
+   host + users
 */
 
 const { Router } = require('express');
@@ -10,11 +10,40 @@ const { getUsers, createUsers, getUsersById, updateUsersById, deleteUsersById } 
 
 const router = Router();
 
-router.get(
-   '/getusers', 
-   getUsers
-);
+/**
+ * @swagger
+ * /getusers:
+ *    get:
+ *       description: Get all users
+ *       responses:
+ *          200:
+ *             description: OK
+ *             schema:
+ *                type: array
+ *                items:
+ *                   $ref: '#/definitions/user'
+ */
+router.get('/getusers', getUsers);
 
+/**
+ * @swagger
+ * /createUsers:
+ *    post:
+ *       description: Create a user in the database
+ *       parameters:
+ *        - in: body
+ *          name: user
+ *          schema:
+ *             $ref: '#definitions/user'
+ *          required: true   
+ *       responses:
+ *          201:
+ *             description: CREATED
+ *             schema:
+ *                $ref: '#/definitions/user'
+ *          405:
+ *             description: Invalid input
+ */
 router.post(
    '/createUsers', 
    [
@@ -31,11 +60,56 @@ router.post(
    createUsers
 );
 
-router.get(
-   '/getusersById/:userId', 
-   getUsersById
-);
 
+
+/**
+ * @swagger
+ * /getusersById/{userId}:
+ *    get:
+ *       description: Get a user by userId from the database
+ *       parameters:
+ *        - in: path
+ *          name: userId
+ *          type: integer
+ *          required: true   
+ *       responses:
+ *          200:
+ *             description: OK
+ *             schema:
+ *                $ref: '#/definitions/user'
+ *          400:
+ *             description: Invalid user id
+ *          404:
+ *             description: User not found
+ */
+router.get('/getusersById/:userId', getUsersById);
+
+
+/**
+ * @swagger
+ * /updateUsersById/{userId}:
+ *    put:
+ *       description: Update a user by userId in the database
+ *       parameters:
+ *        - in: path
+ *          name: userId
+ *          type: integer
+ *          required: true
+ *        - in: body
+ *          name: user
+ *          schema:
+ *             $ref: '#definitions/user'
+ *          required: true   
+ *       responses:
+ *          200:
+ *             description: OK
+ *             schema:
+ *                $ref: '#/definitions/user'
+ *          400:
+ *             description: Invalid user id
+ *          404:
+ *             description: User not found
+ */
 router.put(
    '/updateUsersById/:userId', 
    [
@@ -52,10 +126,26 @@ router.put(
    updateUsersById
 );
 
-router.delete(
-   '/deleteUsersById/:userId', 
-   deleteUsersById
-);
+
+/**
+ * @swagger
+ * /deleteUsersById/{userId}:
+ *    delete:
+ *       description: Delete a user by userId from the database
+ *       parameters:
+ *        - in: path
+ *          name: userId
+ *          type: integer
+ *          required: true   
+ *       responses:
+ *          200:
+ *             description: OK
+ *          400:
+ *             description: Invalid user id
+ *          404:
+ *             description: User not found
+ */
+router.delete('/deleteUsersById/:userId', deleteUsersById);
 
 
 module.exports = router;

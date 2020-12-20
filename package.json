@@ -1,18 +1,19 @@
 {
-  "name": "10-calendar-backend",
+  "name": "backend-cloudappi",
   "version": "1.0.0",
-  "description": "",
+  "description": "Backend de alta, modificación, eliminación y consulta de usuarios en MySQL",
   "main": "index.js",
   "engines": {
-    "node": "14.15.3"
+    "node": "14.15.3",
+    "npm": "6.14.9"
   },
   "scripts": {
-    "dev": "nodemon index.js",
-    "start": "node index.js",
-    "test": "jest --watch --detectOpenHandles"
+    "dev": "NODE_ENV=development nodemon index.js",
+    "start": "NODE_ENV=production node index.js",
+    "test": "NODE_ENV=test jest --watch --detectOpenHandles"
   },
   "keywords": [],
-  "author": "",
+  "author": "Paul Lionel Mesco Sota",
   "license": "ISC",
   "dependencies": {
     "colors": "^1.4.0",

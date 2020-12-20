@@ -25,7 +25,8 @@ const createUsers = async (req = request, res = response) => {
 
       return res.status(result.code).json(result.resp);
 
-   } catch {
+   } catch (error) {
+      console.log(error);
       return res.status(500).json('Error creating user, please contact the system administrator.');
    }
 }
@@ -44,7 +45,8 @@ const getUsersById = async (req = request, res = response) => {
       }
 
       return res.status(200).json(user);
-   } catch {
+   } catch (error) {
+      console.log(error);
       return res.status(500).json('Error getting user, please contact the system administrator.');
    }
 }
@@ -62,7 +64,8 @@ const updateUsersById = async (req = request, res = response) => {
 
       return res.status(result.code).json(result.resp);
 
-   } catch {
+   } catch (error) {
+      console.log(error);
       return res.status(500).json('Error udpating user, please contact the system administrator.');
    }
 }
@@ -81,7 +84,8 @@ const deleteUsersById = async (req = request, res = response) => {
       }
 
       return res.status(200).json('OK');
-   } catch {
+   } catch (error) {
+      console.log(error);
       return res.status(500).json('Error deleting user, please contact the system administrator.');
    }
 }

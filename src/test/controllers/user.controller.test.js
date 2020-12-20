@@ -43,7 +43,6 @@ describe('Pruebas en user.controller', () => {
    });
 
 
-
    describe('endPoint POST: createUsers', () => {
       
       const userTest = {
@@ -147,6 +146,7 @@ describe('Pruebas en user.controller', () => {
 
    });
 
+   
    describe('endPoint PUT: updateUsersById/{userId}', () => {
       
       const userTest = {
@@ -216,17 +216,29 @@ describe('Pruebas en user.controller', () => {
 
 
    describe('endPoint DELETE: deleteUsersById/{userId}', () => {
-      
+      const userTest = {
+         id: 0,
+         name: 'Jose canales',
+         email: 'paulmcsota@gmail.com',
+         birthDate: '2016-02-26T23:44:42.123',
+         address: {
+            id: 0,
+            street: 'Conj. Hab. Jorge Basadre Grohmann Mz B Lote 24',
+            state: 'Peru',
+            city: 'Tacna',
+            country: 'Tacna',
+            zip: '23001'
+         }
+      }
       it('Debe retornar el código de estado "200" al eliminar el usuario', async () => {
-         const userId = Math.floor(Math.random() * 100) + 1;
-         const res = await request(app)
-            .delete(`/users/deleteUsersById/${userId}`)
-            .set('Accept', 'application/json')
+         const resCreateUser = await request(app).post('/users/createUsers').set('Accept', 'application/json').send(userTest);
+         
+         const resDeleteUser = await request(app).delete(`/users/deleteUsersById/${resCreateUser.body.id}`).set('Accept', 'application/json');
 
          const OK_MESSAGE_RESPONSE = 'OK';
 
-         expect(res.statusCode).toEqual(200);
-         expect(res.body).toEqual(OK_MESSAGE_RESPONSE);
+         expect(resDeleteUser.statusCode).toEqual(200);
+         expect(resDeleteUser.body).toEqual(OK_MESSAGE_RESPONSE);
       });
       
 
@@ -234,7 +246,7 @@ describe('Pruebas en user.controller', () => {
          const userId = 'asda';
          const res = await request(app)
             .delete(`/users/deleteUsersById/${userId}`)
-            .set('Accept', 'application/json')
+            .set('Accept', 'application/json');
 
          const INVALID_USER_MESSAGE_RESPONSE = 'Invalid user id';
          
@@ -246,7 +258,7 @@ describe('Pruebas en user.controller', () => {
          const userId = Math.floor(Math.random() * 6000) + 5000;
          const res = await request(app)
             .delete(`/users/deleteUsersById/${userId}`)
-            .set('Accept', 'application/json')
+            .set('Accept', 'application/json');
 
          const NOT_FOUND_USER_MESSAGE_RESPONSE = 'User not found';
          

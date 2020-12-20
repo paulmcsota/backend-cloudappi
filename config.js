@@ -1,13 +1,17 @@
-require('dotenv').config();
+const dotenv = require('dotenv');
+const path = require('path');
 
-process.env.PORT = process.env.PORT || 4000;
+dotenv.config({
+   path: path.resolve(__dirname, process.env.NODE_ENV + '.env')
+})
 
 module.exports = {
-   port: process.env.NODE_ENV === 'test' ? 3001 : process.env.PORT,
-   dbUrl: process.env.NODE_ENV === 'test' ? process.env.HOST_URL_TEST : process.env.HOST_URL,
-   dbPort: process.env.NODE_ENV === 'test' ? process.env.HOST_PORT_TEST : process.env.HOST_PORT,
-   dbUser: process.env.NODE_ENV === 'test' ? process.env.HOST_USER_TEST : process.env.HOST_USER,
-   dbPassword: process.env.NODE_ENV === 'test' ? process.env.HOST_PASSWORD_TEST : process.env.HOST_PASSWORD,
-   dbDialect: process.env.NODE_ENV === 'test' ? process.env.HOST_DIALECT_TEST : process.env.HOST_DIALECT,
-   dbName: process.env.NODE_ENV === 'test' ? process.env.HOST_DATABASE_TEST : process.env.HOST_DATABASE,
+   NODE_ENV: process.env.NODE_ENV || 'development',
+   port:  process.env.PORT || 4000,
+   dbUrl: process.env.HOST_URL || 'localhost',
+   dbPort: process.env.HOST_PORT || 3306,
+   dbUser: process.env.HOST_USER || 'sa',
+   dbPassword: process.env.HOST_PASSWORD || 'Tacna*2020',
+   dbDialect: process.env.HOST_DIALECT || 'mysql',
+   dbName: process.env.HOST_DATABASE || 'cloudappi',
 }

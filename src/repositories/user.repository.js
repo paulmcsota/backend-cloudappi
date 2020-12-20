@@ -1,4 +1,4 @@
-const { Address, User, sequelize } = require('../database/dbConfig');
+const { Address, User } = require('../database/dbConfig');
 
 const getAllUsers = async () => {
    const usuarios = await User.findAll({ 
@@ -7,7 +7,6 @@ const getAllUsers = async () => {
    });
    
    return usuarios;
-   
 }
 
 const createUser = async (user) => {
