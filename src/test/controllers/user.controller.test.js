@@ -150,12 +150,12 @@ describe('Pruebas en user.controller', () => {
    describe('endPoint PUT: updateUsersById/{userId}', () => {
       
       const userTest = {
-         id: 20,
+         id: 0,
          name: 'Jose ramirez vega',
          email: 'jramirez@gmail.com',
          birthDate: '2016-02-26T23:44:42.123',
          address: {
-            id: 20,
+            id: 0,
             street: 'Asoc. los nogales Mz B Lote 24',
             state: 'Peru',
             city: 'Cusco',
@@ -164,18 +164,22 @@ describe('Pruebas en user.controller', () => {
          }
       }
       it('Debe retornar el código de estado "200" y el usuario editado', async () => {
-         const userId = userTest.id;
+         const resCreateUser = await request(app).post('/users/createUsers').set('Accept', 'application/json').send(userTest);
+
+         userTest.name = 'Jose sin apellido';
+         userTest.address.id = resCreateUser.body.address.id;
+
          const res = await request(app)
-            .put(`/users/updateUsersById/${userId}`)
+            .put(`/users/updateUsersById/${resCreateUser.body.id}`)
             .set('Accept', 'application/json')
             .send(userTest);
 
          expect(res.statusCode).toEqual(200);
-         expect(res.body.id).toEqual(userTest.id);
+         expect(typeof res.body.id).toEqual('number');
          expect(res.body.name).toEqual(userTest.name);
          expect(res.body.email).toEqual(userTest.email);
          expect(res.body.birthDate).toEqual(userTest.birthDate);
-         expect(res.body.address.id).toEqual(userTest.address.id);
+         expect(typeof res.body.address.id).toEqual('number');
          expect(res.body.address.street).toEqual(userTest.address.street);
          expect(res.body.address.state).toEqual(userTest.address.state);
          expect(res.body.address.city).toEqual(userTest.address.city);
