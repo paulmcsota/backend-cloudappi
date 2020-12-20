@@ -18,7 +18,7 @@ const createUser = async (user) => {
    }
    const userCreated = await userRepository.createUser(user);
    return {
-      code: 200,
+      code: 201,
       resp: userCreated
    }
 }

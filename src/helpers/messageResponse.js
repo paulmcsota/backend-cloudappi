@@ -6,5 +6,5 @@ const messageResponse = {
 }
 
 module.exports = {
-   messageResponse
+   messageResponse,
 }
