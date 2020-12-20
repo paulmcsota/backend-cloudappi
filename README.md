@@ -13,9 +13,33 @@ Para las pruebas unitarias se utilizó Jest
    La aplicación se desarrollo cumpliendo los recursos definidos en el siguiente swagger: https://s3-eu-west-1.amazonaws.com/mmi-codechallenge/swagger-users-v1.json
 
    La swagger de la aplicación se encuentra en la siguiente dirección: https://app-backend-cloudappi-paulsota.herokuapp.com/
+
 ## Postman
 
    La documentación en Postman de la aplicación se encuentra en la siguiente dirección: https://documenter.getpostman.com/view/6668361/TVsuBSCa
+
+## .env
+
+   Se debe tener una instancia de MySQL.
+   
+### development.env
+
+   HOST_URL=localhost  --> Host de la instancia.
+   HOST_PORT=3306  --> Puerto de la instancia.
+   HOST_USER=sa  --> Usuario de la base de datos.
+   HOST_PASSWORD=Tacna*2020  --> Contraseña del usuario de la base de datos.
+   HOST_DIALECT=mysql  --> Dialecto de la instancia
+   HOST_DATABASE=cloudappi  --> Nombre de la base de datos (la base de datos debe crearse antes de lanzar la aplicación.
+
+### test.env
+
+   HOST_URL=localhost  --> Host de la instancia.
+   HOST_PORT=3306  --> Puerto de la instancia.
+   HOST_USER=sa  --> Usuario de la base de datos.
+   HOST_PASSWORD=Tacna*2020  --> Contraseña del usuario de la base de datos.
+   HOST_DIALECT=mysql  --> Dialecto de la instancia
+   HOST_DATABASE=cloudappi_test  --> Nombre de la base de datos (la base de datos debe crearse antes de lanzar la aplicación.
+   PORT= 3001  --> Puerto donde se ejecutará la aplicación.
 
 ## Install
 
