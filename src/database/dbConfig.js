@@ -8,7 +8,7 @@ const { dbName, dbUser, dbPassword, dbDialect, dbUrl, dbPort } = require('../../
 const sequelize = new Sequelize(dbName, dbUser, dbPassword, {
    dialect: dbDialect,
    host: dbUrl,
-   port: dbPort,
+   // port: dbPort,
    logging: false,
 });
 const Address = AddressModel(sequelize, Sequelize);
